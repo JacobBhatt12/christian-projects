@@ -1,0 +1,34 @@
+.venv/
+__pycache__/
+*.pyc
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
+secrets*.yaml
+secrets*.yml
+
+# Operating system and editor files
+.DS_Store
+.idea/
+.vscode/
+
+# Python caches, builds, and test artifacts
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+
+# Local databases and application data
+*.db
+*.sqlite
+*.sqlite3
