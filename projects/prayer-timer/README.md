@@ -18,4 +18,4 @@ Press `Ctrl+C` to end early.
 
 ## Requirements
 
-Python 3 only, used for downloaded requirments. 
+Python 3 only, no downloaded requirements needed.
