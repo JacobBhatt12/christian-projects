@@ -18,4 +18,4 @@ Press `Ctrl+C` to end early.
 
 ## Requirements
 
-Python 3 only — uses the standard library (`time`), no extra packages needed.
+Python 3 only, used for downloaded requirments. 
