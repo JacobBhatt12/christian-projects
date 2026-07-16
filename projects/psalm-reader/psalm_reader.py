@@ -99,9 +99,9 @@ def read_psalm(number):
 
 def main():
     print("=" * 34)
-    print("          PSALM READER")
+    print("          Psalm Reader")
     print("=" * 34)
-    print("Read slowly. Let the words settle.\n")
+    print("Read slowly. Let the words flow.\n")
 
     try:
         number = choose_psalm()
