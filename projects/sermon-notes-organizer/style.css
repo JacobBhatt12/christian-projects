@@ -1,0 +1,143 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f5f5;
+  color: #222;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.box {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px 20px;
+}
+
+.box h2 {
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="search"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  border: 1px solid #999;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #3366cc;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #274e9e;
+}
+
+#search-input {
+  margin-bottom: 15px;
+}
+
+#note-count {
+  font-size: 14px;
+  font-weight: normal;
+  color: #666;
+}
+
+#notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.note-card {
+  border: 1px solid #ddd;
+  border-left: 4px solid #3366cc;
+  border-radius: 3px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.note-card-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.note-topic {
+  font-weight: bold;
+}
+
+.note-meta {
+  font-size: 13px;
+  color: #666;
+}
+
+.note-text {
+  white-space: pre-wrap;
+  margin: 6px 0;
+}
+
+.note-delete {
+  background: none;
+  border: none;
+  color: #999;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+}
+
+.note-delete:hover {
+  color: #cc3333;
+}
+
+mark {
+  background-color: yellow;
+}
+
+#empty-message {
+  color: #666;
+  font-style: italic;
+}
+
+.footer-note {
+  text-align: center;
+  color: #888;
+  font-size: 13px;
+  margin-top: 20px;
+}

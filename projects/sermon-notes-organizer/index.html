@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sermon Notes Organizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Sermon Notes Organizer</h1>
+  <p>Add sermon notes and search through them by keyword.</p>
+
+  <div class="container">
+
+    <div class="box">
+      <h2>Add a Note</h2>
+
+      <form id="note-form">
+        <label for="note-date">Date</label>
+        <input type="date" id="note-date" required>
+
+        <label for="note-speaker">Speaker</label>
+        <input type="text" id="note-speaker" placeholder="Pastor John" required>
+
+        <label for="note-topic">Topic</label>
+        <input type="text" id="note-topic" placeholder="Faith Over Fear" required>
+
+        <label for="note-text">Notes</label>
+        <textarea id="note-text" rows="5" placeholder="Write what you learned..." required></textarea>
+
+        <button type="submit">Save Note</button>
+      </form>
+    </div>
+
+    <div class="box">
+      <h2>Your Notes <span id="note-count"></span></h2>
+
+      <input type="search" id="search-input" placeholder="Search by speaker, topic, or keyword">
+
+      <ul id="notes-list"></ul>
+
+      <p id="empty-message">No sermon notes yet. Add one above.</p>
+    </div>
+
+  </div>
+
+  <p class="footer-note">Notes are saved in your browser using local storage.</p>
+
+  <script src="script.js"></script>
+</body>
+</html>
