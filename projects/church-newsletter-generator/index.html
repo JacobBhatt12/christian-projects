@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Church Newsletter Generator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="masthead">
+  <span class="masthead__mark" aria-hidden="true">&#10014;</span>
+  <div class="masthead__text">
+    <h1>Church Newsletter Generator</h1>
+    <p>Fill in the blanks on the left — the bulletin types itself out on the right.</p>
+  </div>
+</header>
+
+<main class="desk">
+
+  <section class="worksheet" aria-label="Newsletter worksheet">
+
+    <div class="field">
+      <label for="church-name">Church name <span class="optional">(optional)</span></label>
+      <input type="text" id="church-name" placeholder="Grace Community Church" autocomplete="off" />
+    </div>
+
+    <div class="field">
+      <label for="pastors-note">Pastor's note</label>
+      <textarea id="pastors-note" rows="5" placeholder="A few words for the flock this week..."></textarea>
+    </div>
+
+    <div class="field">
+      <div class="field__heading">
+        <label id="events-label">Upcoming events</label>
+        <span class="field__hint">one per line, however you'd say it out loud</span>
+      </div>
+      <div id="events-list" aria-labelledby="events-label"></div>
+      <button type="button" class="add-line" data-add="events">+ add another event</button>
+    </div>
+
+    <div class="field">
+      <div class="field__heading">
+        <label id="prayer-label">Prayer list</label>
+        <span class="field__hint">names or requests, one per line</span>
+      </div>
+      <div id="prayer-list" aria-labelledby="prayer-label"></div>
+      <button type="button" class="add-line" data-add="prayer">+ add another request</button>
+    </div>
+
+  </section>
+
+  <section class="bulletin" aria-label="Bulletin preview">
+
+    <div class="paper" id="preview-sheet">
+      <div class="stamp" id="date-stamp">
+        <span id="stamp-date">JUL 21 2026</span>
+        <span class="stamp__ring" aria-hidden="true"></span>
+      </div>
+
+      <h2 id="preview-title">Church Newsletter</h2>
+      <p class="preview-date" id="preview-date">July 21, 2026</p>
+
+      <div class="section">
+        <h3>Pastor's Note</h3>
+        <p id="preview-note" class="empty">No note this week.</p>
+      </div>
+
+      <div class="section">
+        <h3>Upcoming Events</h3>
+        <ul id="preview-events"><li class="empty">No upcoming events.</li></ul>
+      </div>
+
+      <div class="section">
+        <h3>Prayer List</h3>
+        <ul id="preview-prayer"><li class="empty">No prayer requests this week.</li></ul>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" id="stamp-btn" class="stamp-btn">Stamp &amp; download</button>
+      <button type="button" id="print-btn" class="print-btn">Print this copy</button>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="fine-print">
+  Everything happens right here in your browser — nothing is uploaded, emailed, or saved anywhere but your own computer.
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
