@@ -9,7 +9,7 @@ CROSS = r"""
                    \=====/
                    ]==+==[
                 .===========.
-                |* I N R I *|
+                |*         *|
                 '==========='
                    ]==+==[
                    ]=-+-=[
@@ -81,8 +81,8 @@ def wrap_text(text, width):
     return lines
 
 
-def print_verse(width=45):
-    """Pick a random verse and print it centered under the cross."""
+def print_verse(width=45): 
+    """Pick a random verse and print it centered under the cross. """
     text, reference = random.choice(VERSES)
     print()
     for line in wrap_text(f'"{text}"', width):
@@ -91,8 +91,7 @@ def print_verse(width=45):
     print(f"- {reference}".center(width))
     print()
 
-
-def main():
+def main(): 
     print(CROSS)
     print_verse()
 
