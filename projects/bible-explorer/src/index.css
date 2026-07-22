@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* the connecting thread between stops, drawn with a slow-moving dash
+   so it reads as "alive" without turning into a neon glow effect */
+.thread-edge path {
+  stroke-dasharray: 6 5;
+  animation: thread-move 2.5s linear infinite;
+}
+
+@keyframes thread-move {
+  to {
+    stroke-dashoffset: -22;
+  }
+}
+
+.react-flow__attribution {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d8d8d8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
