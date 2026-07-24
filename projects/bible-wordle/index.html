@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scripture Wordle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6efdd;
+    --paper-dark: #ede2c6;
+    --ink: #3d3226;
+    --ink-soft: #6b5d4a;
+    --green: #7a9471;
+    --green-deep: #5c7853;
+    --amber: #d3a24c;
+    --absent: #cabfa8;
+    --border: #8a7a5c;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--paper);
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(122,148,113,0.08) 0, transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(211,162,76,0.08) 0, transparent 45%);
+    font-family: 'Kalam', cursive;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 12px 40px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 2.3rem;
+    margin: 4px 0 2px;
+    transform: rotate(-1deg);
+    letter-spacing: 1px;
+  }
+
+  .leaf {
+    font-size: 1.2rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+
+  .verse {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    max-width: 420px;
+    text-align: center;
+    margin-bottom: 14px;
+    border-top: 1px dashed var(--border);
+    padding-top: 8px;
+  }
+
+  #board {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 8px;
+    margin: 10px 0 18px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat(5, 52px);
+    gap: 8px;
+  }
+
+  .tile {
+    width: 52px;
+    height: 52px;
+    border: 2.5px solid var(--border);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    background: var(--paper-dark);
+    transition: transform 0.15s ease;
+  }
+
+  .tile.filled {
+    animation: pop 0.1s ease;
+  }
+
+  .tile.correct {
+    background: var(--green);
+    border-color: var(--green-deep);
+    color: #fdfbf3;
+  }
+
+  .tile.present {
+    background: var(--amber);
+    border-color: #b5822f;
+    color: #3d3226;
+  }
+
+  .tile.absent {
+    background: var(--absent);
+    border-color: #a89a7c;
+    color: #58503f;
+  }
+
+  .tile.flip {
+    animation: flip 0.5s ease forwards;
+  }
+
+  @keyframes flip {
+    0% { transform: rotateX(0deg) rotate(var(--wobble, 0deg)); }
+    45% { transform: rotateX(90deg) rotate(var(--wobble, 0deg)); }
+    55% { transform: rotateX(90deg) rotate(var(--wobble, 0deg)); }
+    100% { transform: rotateX(0deg) rotate(var(--wobble, 0deg)); }
+  }
+
+  @keyframes pop {
+    0% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+  }
+
+  .row.shake {
+    animation: shake 0.4s ease;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+
+  #message {
+    min-height: 26px;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.15rem;
+    color: var(--green-deep);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  #keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    align-items: center;
+  }
+
+  .krow {
+    display: flex;
+    gap: 5px;
+  }
+
+  .key {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 0.95rem;
+    background: var(--paper-dark);
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    min-width: 34px;
+    height: 44px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--ink);
+    transition: transform 0.1s ease, background 0.2s ease;
+  }
+
+  .key:active {
+    transform: scale(0.92);
+  }
+
+  .key.wide {
+    min-width: 56px;
+    font-size: 0.75rem;
+  }
+
+  .key.correct {
+    background: var(--green);
+    border-color: var(--green-deep);
+    color: #fdfbf3;
+  }
+
+  .key.present {
+    background: var(--amber);
+    border-color: #b5822f;
+  }
+
+  .key.absent {
+    background: var(--absent);
+    color: #8a7f68;
+    border-color: #b9ac91;
+  }
+
+  #reveal {
+    max-width: 420px;
+    text-align: center;
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--paper-dark);
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    display: none;
+    transform: rotate(0.6deg);
+  }
+
+  #reveal.show { display: block; }
+
+  #reveal h3 {
+    font-family: 'Patrick Hand', cursive;
+    margin: 0 0 6px;
+    color: var(--green-deep);
+    font-size: 1.4rem;
+  }
+
+  #newGameBtn {
+    margin-top: 12px;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1rem;
+    background: var(--green);
+    color: #fdfbf3;
+    border: 2px solid var(--green-deep);
+    border-radius: 8px;
+    padding: 8px 18px;
+    cursor: pointer;
+  }
+
+  #newGameBtn:hover {
+    background: var(--green-deep);
+  }
+
+  footer {
+    margin-top: 28px;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+
+  @media (max-width: 380px) {
+    .row { grid-template-columns: repeat(5, 44px); }
+    .tile { width: 44px; height: 44px; font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Scripture Wordle</h1>
+  <div class="subtitle">Guess the word in 6 tries &mdash; every answer has a bit of Scripture behind it</div>
+</header>
+
+<div class="verse">"Thy word is a lamp unto my feet, and a light unto my path." &mdash; Psalm 119:105</div>
+
+<div id="board"></div>
+<div id="message"></div>
+
+<div id="keyboard"></div>
+
+<div id="reveal">
+  <h3 id="revealWord"></h3>
+  <p id="revealNote"></p>
+  <button id="newGameBtn">Play again</button>
+</div>
+
+<footer>Made by hand for fun &middot; letters turn green when they're just right</footer>
+
+<script>
+const WORDS = {
+  GRACE: "Unmerited favor — Ephesians 2:8, saved by grace through faith.",
+  FAITH: "Confidence in what we hope for — Hebrews 11:1.",
+  MOSES: "Led Israel out of Egypt — Exodus 3.",
+  JESUS: "The Son of God, our Savior — Matthew 1:21.",
+  DAVID: "Shepherd boy who became king — 1 Samuel 16.",
+  ANGEL: "A messenger of God — Luke 2:9-10.",
+  CROSS: "Where Christ died for our sins — 1 Corinthians 1:18.",
+  MANNA: "Bread from heaven in the wilderness — Exodus 16:15.",
+  TRIBE: "Israel was divided into twelve — Genesis 49:28.",
+  PSALM: "A song or poem of worship — Book of Psalms.",
+  ISAAC: "Son of promise to Abraham and Sarah — Genesis 21.",
+  JACOB: "Renamed Israel after wrestling with God — Genesis 32:28.",
+  JUDAH: "Tribe from which Christ descended — Genesis 49:10.",
+  JONAH: "Swallowed by a great fish — Jonah 1:17.",
+  PETER: "The disciple called the Rock — Matthew 16:18.",
+  JAMES: "Apostle and brother of John — Mark 1:19.",
+  SHEBA: "Queen who visited Solomon — 1 Kings 10:1.",
+  SINAI: "Mountain where the Law was given — Exodus 19:20.",
+  EGYPT: "Land of Israel's bondage — Exodus 1:13.",
+  BLESS: "To speak favor and goodness — Numbers 6:24.",
+  GLORY: "The visible weight of God's presence — Exodus 40:34.",
+  TRUTH: "Christ called Himself this — John 14:6.",
+  LIGHT: "God's Word and presence — Psalm 119:105.",
+  PEACE: "The fruit of the Spirit — Galatians 5:22.",
+  TRUST: "Lean not on your own understanding — Proverbs 3:5.",
+  HONOR: "Honor your father and mother — Exodus 20:12.",
+  MERCY: "New every morning — Lamentations 3:22-23.",
+  CHOIR: "Singers who lead worship — 1 Chronicles 25:1.",
+  BIBLE: "The written Word of God.",
+  VERSE: "A single line of Scripture.",
+  ALTAR: "A place of sacrifice and worship — Genesis 8:20.",
+  ANGER: "Be slow to it — James 1:19.",
+  NAOMI: "Ruth's faithful mother-in-law — Ruth 1:16.",
+  SARAH: "Abraham's wife, mother of Isaac — Genesis 21:2.",
+  AARON: "Moses' brother and the first priest — Exodus 28:1.",
+  ENOCH: "Walked with God and was no more — Genesis 5:24.",
+  LABAN: "Jacob's father-in-law — Genesis 29.",
+  HOSEA: "Prophet who married Gomer — Hosea 1:2.",
+  MICAH: "Prophet who foretold Bethlehem — Micah 5:2.",
+  NAHUM: "Prophet who spoke against Nineveh — Nahum 1.",
+  TITUS: "Paul's companion and letter recipient.",
+  SIMON: "Also called Peter, a fisherman — Luke 5:10.",
+  JUDAS: "The disciple who betrayed Jesus — Matthew 26:14-16.",
+  SALEM: "Ancient name for Jerusalem — Genesis 14:18."
+};
+
+const WORD_LIST = Object.keys(WORDS);
+const ROWS = 6;
+const COLS = 5;
+
+let secret = "";
+let currentRow = 0;
+let currentGuess = "";
+let gameOver = false;
+let board = [];
+
+const boardEl = document.getElementById('board');
+const messageEl = document.getElementById('message');
+const keyboardEl = document.getElementById('keyboard');
+const revealEl = document.getElementById('reveal');
+const revealWordEl = document.getElementById('revealWord');
+const revealNoteEl = document.getElementById('revealNote');
+const newGameBtn = document.getElementById('newGameBtn');
+
+const KEY_ROWS = [
+  ['Q','W','E','R','T','Y','U','I','O','P'],
+  ['A','S','D','F','G','H','J','K','L'],
+  ['ENTER','Z','X','C','V','B','N','M','DEL']
+];
+
+function pickSecret() {
+  return WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)];
+}
+
+function buildBoard() {
+  boardEl.innerHTML = '';
+  board = [];
+  for (let r = 0; r < ROWS; r++) {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'row';
+    rowEl.id = 'row-' + r;
+    const tiles = [];
+    for (let c = 0; c < COLS; c++) {
+      const tile = document.createElement('div');
+      tile.className = 'tile';
+      tile.id = `tile-${r}-${c}`;
+      tile.style.setProperty('--wobble', (Math.random() * 4 - 2).toFixed(1) + 'deg');
+      rowEl.appendChild(tile);
+      tiles.push(tile);
+    }
+    boardEl.appendChild(rowEl);
+    board.push(tiles);
+  }
+}
+
+function buildKeyboard() {
+  keyboardEl.innerHTML = '';
+  KEY_ROWS.forEach(rowKeys => {
+    const krow = document.createElement('div');
+    krow.className = 'krow';
+    rowKeys.forEach(k => {
+      const btn = document.createElement('button');
+      btn.className = 'key' + ((k === 'ENTER' || k === 'DEL') ? ' wide' : '');
+      btn.textContent = k === 'DEL' ? 'DEL' : k;
+      btn.id = 'key-' + k;
+      btn.addEventListener('click', () => handleKey(k));
+      krow.appendChild(btn);
+    });
+    keyboardEl.appendChild(krow);
+  });
+}
+
+function setMessage(text, ms) {
+  messageEl.textContent = text;
+  if (ms) {
+    setTimeout(() => { if (messageEl.textContent === text) messageEl.textContent = ''; }, ms);
+  }
+}
+
+function handleKey(k) {
+  if (gameOver) return;
+  if (k === 'ENTER') {
+    submitGuess();
+  } else if (k === 'DEL') {
+    currentGuess = currentGuess.slice(0, -1);
+    renderCurrentRow();
+  } else if (/^[A-Z]$/.test(k) && currentGuess.length < COLS) {
+    currentGuess += k;
+    renderCurrentRow();
+  }
+}
+
+function renderCurrentRow() {
+  const tiles = board[currentRow];
+  for (let c = 0; c < COLS; c++) {
+    const letter = currentGuess[c] || '';
+    tiles[c].textContent = letter;
+    tiles[c].classList.toggle('filled', !!letter);
+  }
+}
+
+function submitGuess() {
+  if (currentGuess.length < COLS) {
+    setMessage("Not enough letters", 1200);
+    shakeRow();
+    return;
+  }
+
+  const guess = currentGuess;
+  const result = scoreGuess(guess, secret);
+  const tiles = board[currentRow];
+
+  result.forEach((status, i) => {
+    setTimeout(() => {
+      tiles[i].classList.add('flip');
+      setTimeout(() => {
+        tiles[i].classList.add(status);
+      }, 250);
+    }, i * 300);
+  });
+
+  updateKeyboardColors(guess, result);
+
+  const isWin = guess === secret;
+  const delay = COLS * 300 + 300;
+
+  setTimeout(() => {
+    if (isWin) {
+      setMessage("Well done! — " + guess);
+      finishGame(true);
+    } else if (currentRow === ROWS - 1) {
+      setMessage("So close — the word was " + secret);
+      finishGame(false);
+    } else {
+      currentRow++;
+      currentGuess = "";
+    }
+  }, delay);
+}
+
+function scoreGuess(guess, answer) {
+  const result = new Array(COLS).fill('absent');
+  const answerLetters = answer.split('');
+  const used = new Array(COLS).fill(false);
+
+  for (let i = 0; i < COLS; i++) {
+    if (guess[i] === answer[i]) {
+      result[i] = 'correct';
+      used[i] = true;
+    }
+  }
+
+  for (let i = 0; i < COLS; i++) {
+    if (result[i] === 'correct') continue;
+    const letter = guess[i];
+    for (let j = 0; j < COLS; j++) {
+      if (!used[j] && answerLetters[j] === letter) {
+        result[i] = 'present';
+        used[j] = true;
+        break;
+      }
+    }
+  }
+
+  return result;
+}
+
+function updateKeyboardColors(guess, result) {
+  const priority = { absent: 0, present: 1, correct: 2 };
+  for (let i = 0; i < COLS; i++) {
+    const letter = guess[i];
+    const status = result[i];
+    const keyEl = document.getElementById('key-' + letter);
+    if (!keyEl) continue;
+    const current = keyEl.dataset.status || 'none';
+    if (!current || priority[status] > (priority[current] ?? -1)) {
+      keyEl.classList.remove('correct', 'present', 'absent');
+      keyEl.classList.add(status);
+      keyEl.dataset.status = status;
+    }
+  }
+}
+
+function shakeRow() {
+  const rowEl = document.getElementById('row-' + currentRow);
+  rowEl.classList.add('shake');
+  setTimeout(() => rowEl.classList.remove('shake'), 400);
+}
+
+function finishGame(won) {
+  gameOver = true;
+  revealWordEl.textContent = secret;
+  revealNoteEl.textContent = WORDS[secret];
+  revealEl.classList.add('show');
+}
+
+function newGame() {
+  secret = pickSecret();
+  currentRow = 0;
+  currentGuess = "";
+  gameOver = false;
+  revealEl.classList.remove('show');
+  messageEl.textContent = '';
+  document.querySelectorAll('.key').forEach(k => {
+    k.classList.remove('correct', 'present', 'absent');
+    delete k.dataset.status;
+  });
+  buildBoard();
+}
+
+newGameBtn.addEventListener('click', newGame);
+
+document.addEventListener('keydown', (e) => {
+  const key = e.key.toUpperCase();
+  if (key === 'ENTER') handleKey('ENTER');
+  else if (key === 'BACKSPACE') handleKey('DEL');
+  else if (/^[A-Z]$/.test(key)) handleKey(key);
+});
+
+buildKeyboard();
+newGame();
+</script>
+
+</body>
+</html>
+
