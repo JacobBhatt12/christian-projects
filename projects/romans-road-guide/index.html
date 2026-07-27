@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Romans Road</title>
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+  }
+
+  .page {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #000000;
+    margin: 0 0 0.8rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.05;
+    margin: 0 0 0.6rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    line-height: 1.55;
+    margin: 0 0 2rem;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .tab-btn.active {
+    background: #000000;
+    color: #ffffff;
+  }
+
+  .tab-btn:focus-visible {
+    outline: 3px solid #000000;
+    outline-offset: 2px;
+  }
+
+  /* Progress dots */
+  .progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .dot {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    border: 2px solid #000000;
+    background: #ffffff;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .dot.active {
+    background: #000000;
+  }
+
+  .dot:focus-visible {
+    outline: 3px solid #000000;
+    outline-offset: 3px;
+  }
+
+  .step-count {
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  /* Card */
+  .card {
+    border: 2px solid #000000;
+    padding: 2rem 1.8rem;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 0.6rem;
+  }
+
+  .verse-ref {
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin: 0 0 0.9rem;
+  }
+
+  blockquote {
+    margin: 0 0 1.3rem;
+    padding-left: 1rem;
+    border-left: 3px solid #000000;
+    font-size: 1.1rem;
+    line-height: 1.55;
+  }
+
+  .say-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 0.4rem;
+  }
+
+  .say {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin: 0 0 1.4rem;
+  }
+
+  .copy-btn {
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 0.55rem 1rem;
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .copy-btn:hover { background: #000000; color: #ffffff; }
+  .copy-btn:focus-visible { outline: 3px solid #000000; outline-offset: 2px; }
+
+  /* Nav buttons */
+  .nav {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.6rem;
+  }
+
+  .nav-btn {
+    flex: 1;
+    padding: 0.9rem 1rem;
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .nav-btn:disabled {
+    background: #ffffff;
+    color: #000000;
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .nav-btn:not(:disabled):hover { background: #ffffff; color: #000000; }
+  .nav-btn:focus-visible { outline: 3px solid #000000; outline-offset: 2px; }
+
+  /* Prayer panel */
+  .prayer-panel { display: none; }
+  .prayer-panel.active { display: block; }
+
+  .prayer-intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0 0 1.6rem;
+  }
+
+  .prayer-box {
+    border: 2px solid #000000;
+    padding: 1.8rem 1.7rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .prayer-box p {
+    font-size: 1.02rem;
+    line-height: 1.75;
+    margin: 0 0 0.9rem;
+  }
+  .prayer-box p:last-child { margin-bottom: 0; }
+
+  .guide-panel.hidden, .prayer-panel:not(.active) { display: none; }
+  .guide-panel.active { display: block; }
+
+  footer {
+    margin-top: 2.5rem;
+    padding-top: 1.4rem;
+    border-top: 2px solid #000000;
+    font-size: 0.78rem;
+    line-height: 1.6;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <p class="eyebrow">A Guide For Sharing Your Faith</p>
+  <h1>The Romans Road</h1>
+  <p class="subtitle">Five verses from the book of Romans, in order, with a simple line to say at each one. Tap through the guide, then use the closing prayer when someone is ready to respond.</p>
+
+  <div class="tabs" role="tablist">
+    <button type="button" class="tab-btn active" id="tab-guide" role="tab" aria-selected="true" aria-controls="guide-panel">Guide</button>
+    <button type="button" class="tab-btn" id="tab-prayer" role="tab" aria-selected="false" aria-controls="prayer-panel">Closing Prayer</button>
+  </div>
+
+  <div id="guide-panel" class="guide-panel active" role="tabpanel" aria-labelledby="tab-guide">
+
+    <div class="progress" id="dots"></div>
+    <p class="step-count" id="step-count"></p>
+
+    <div class="card">
+      <p class="step-title" id="step-title"></p>
+      <p class="verse-ref" id="verse-ref"></p>
+      <blockquote id="verse-text"></blockquote>
+      <p class="say-label">What to say</p>
+      <p class="say" id="say-text"></p>
+      <button type="button" class="copy-btn" id="copy-btn">Copy verse</button>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="nav-btn" id="prev-btn">&larr; Back</button>
+      <button type="button" class="nav-btn" id="next-btn">Next &rarr;</button>
+    </div>
+  </div>
+
+  <div id="prayer-panel" class="prayer-panel" role="tabpanel" aria-labelledby="tab-prayer">
+    <p class="prayer-intro">Invite them to pray this in their own words &mdash; it's the posture of the prayer that matters, not the exact wording.</p>
+    <div class="prayer-box">
+      <p>"God, I know I've fallen short and I can't fix that on my own.</p>
+      <p>Thank You for sending Jesus to die for me and rise again.</p>
+      <p>I believe that, and I want to trust Him with my life.</p>
+      <p>Jesus, be my Lord and my Savior. Thank You for Your gift of life. Amen."</p>
+    </div>
+    <button type="button" class="copy-btn" id="copy-prayer-btn">Copy prayer</button>
+  </div>
+
+  <footer>
+    Verses shown in the ESV. Keep a Bible or Bible app on hand so they can read each verse themselves.
+  </footer>
+</div>
+
+<script>
+  var steps = [
+    {
+      title: "Everyone needs this",
+      ref: "Romans 3:23",
+      verse: "“For all have sinned and fall short of the glory of God.”",
+      say: "“No one's perfect — not you, not me, not anyone. That gap between us and God's standard is what the Bible calls sin, and it affects all of us.”"
+    },
+    {
+      title: "Sin has a cost",
+      ref: "Romans 6:23",
+      verse: "“For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.”",
+      say: "“Sin isn't free — it separates us from God, which the Bible calls death. But look at the second half of that verse: God offers life as a gift, not something earned.”"
+    },
+    {
+      title: "God made a way",
+      ref: "Romans 5:8",
+      verse: "“But God shows his love for us in that while we were still sinners, Christ died for us.”",
+      say: "“God didn't wait for us to clean ourselves up first. While we were still far from Him, Jesus died in our place. That's how much He loves you.”"
+    },
+    {
+      title: "How to receive it",
+      ref: "Romans 10:9–10",
+      verse: "“If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved.”",
+      say: "“This isn't about earning it. It's trusting that Jesus died and rose again, and saying so — believing it in your heart, and confessing it out loud.”"
+    },
+    {
+      title: "It's for anyone",
+      ref: "Romans 10:13",
+      verse: "“For everyone who calls on the name of the Lord will be saved.”",
+      say: "“'Everyone' means you too — no exceptions. If you want to respond to that right now, we can talk to God together.”"
+    }
+  ];
+
+  var current = 0;
+
+  var dotsEl = document.getElementById("dots");
+  var stepCountEl = document.getElementById("step-count");
+  var stepTitleEl = document.getElementById("step-title");
+  var verseRefEl = document.getElementById("verse-ref");
+  var verseTextEl = document.getElementById("verse-text");
+  var sayTextEl = document.getElementById("say-text");
+  var prevBtn = document.getElementById("prev-btn");
+  var nextBtn = document.getElementById("next-btn");
+  var copyBtn = document.getElementById("copy-btn");
+  var copyPrayerBtn = document.getElementById("copy-prayer-btn");
+
+  steps.forEach(function (_, i) {
+    var dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "dot";
+    dot.setAttribute("aria-label", "Go to step " + (i + 1));
+    dot.addEventListener("click", function () {
+      current = i;
+      render();
+    });
+    dotsEl.appendChild(dot);
+  });
+
+  function render() {
+    var step = steps[current];
+    stepCountEl.textContent = "Step " + (current + 1) + " of " + steps.length;
+    stepTitleEl.textContent = step.title;
+    verseRefEl.textContent = step.ref;
+    verseTextEl.textContent = step.verse;
+    sayTextEl.textContent = step.say;
+    copyBtn.textContent = "Copy verse";
+
+    var dots = dotsEl.querySelectorAll(".dot");
+    dots.forEach(function (d, i) {
+      d.classList.toggle("active", i === current);
+    });
+
+    prevBtn.disabled = current === 0;
+    nextBtn.textContent = current === steps.length - 1 ? "Done" : "Next →";
+    nextBtn.disabled = current === steps.length - 1;
+  }
+
+  prevBtn.addEventListener("click", function () {
+    if (current > 0) { current--; render(); }
+  });
+
+  nextBtn.addEventListener("click", function () {
+    if (current < steps.length - 1) { current++; render(); }
+  });
+
+  copyBtn.addEventListener("click", function () {
+    var step = steps[current];
+    var text = step.ref + " — " + step.verse;
+    navigator.clipboard.writeText(text).then(function () {
+      copyBtn.textContent = "Copied!";
+      setTimeout(function () { copyBtn.textContent = "Copy verse"; }, 1500);
+    });
+  });
+
+  copyPrayerBtn.addEventListener("click", function () {
+    var text = "God, I know I've fallen short and I can't fix that on my own. Thank You for sending Jesus to die for me and rise again. I believe that, and I want to trust Him with my life. Jesus, be my Lord and my Savior. Thank You for Your gift of life. Amen.";
+    navigator.clipboard.writeText(text).then(function () {
+      copyPrayerBtn.textContent = "Copied!";
+      setTimeout(function () { copyPrayerBtn.textContent = "Copy prayer"; }, 1500);
+    });
+  });
+
+  var tabGuide = document.getElementById("tab-guide");
+  var tabPrayer = document.getElementById("tab-prayer");
+  var guidePanel = document.getElementById("guide-panel");
+  var prayerPanel = document.getElementById("prayer-panel");
+
+  tabGuide.addEventListener("click", function () {
+    tabGuide.classList.add("active");
+    tabPrayer.classList.remove("active");
+    tabGuide.setAttribute("aria-selected", "true");
+    tabPrayer.setAttribute("aria-selected", "false");
+    guidePanel.classList.add("active");
+    prayerPanel.classList.remove("active");
+  });
+
+  tabPrayer.addEventListener("click", function () {
+    tabPrayer.classList.add("active");
+    tabGuide.classList.remove("active");
+    tabPrayer.setAttribute("aria-selected", "true");
+    tabGuide.setAttribute("aria-selected", "false");
+    prayerPanel.classList.add("active");
+    guidePanel.classList.remove("active");
+  });
+
+  render();
+</script>
+
+</body>
+</html>
