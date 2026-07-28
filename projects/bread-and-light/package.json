@@ -1,0 +1,37 @@
+{
+  "name": "bread-and-light",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A private, offline desktop app for choosing small acts of Christian service and reflecting on them.",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint src",
+    "test": "vitest run",
+    "preview": "vite preview",
+    "desktop": "npm run build && electron .",
+    "verify:ui": "npm run build && node scripts/verify-ui.mjs",
+    "capture:desktop": "npm run build && node scripts/capture-desktop.cjs",
+    "package:desktop": "npm run build && node scripts/package-desktop.mjs"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "@electron/packager": "^18.3.6",
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.7.0",
+    "electron": "^37.2.4",
+    "oxlint": "^1.9.0",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.6",
+    "vitest": "^3.2.4"
+  }
+}
