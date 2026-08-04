@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#000000">
+    <meta
+      name="description"
+      content="Detour is a private, three-step reset for interrupting temptation and choosing a faithful next step."
+    >
+    <title>Detour | Pause, Pray, Pivot</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to the reset</a>
+
+    <div class="app-shell">
+      <header class="app-header">
+        <button class="wordmark" type="button" data-action="home" aria-label="Return to Detour start">
+          DETOUR<span aria-hidden="true">/</span>
+        </button>
+
+        <dl class="stats" aria-label="Your Detour progress">
+          <div class="stat">
+            <dt>Total</dt>
+            <dd id="total-resets">0</dd>
+          </div>
+          <div class="stat">
+            <dt>Streak</dt>
+            <dd><span id="daily-streak">0</span><span class="stat-unit">d</span></dd>
+          </div>
+        </dl>
+
+        <nav class="header-actions" aria-label="Reset controls">
+          <button class="header-button header-button--strong" type="button" data-action="quick-exit">
+            Quick Exit
+          </button>
+          <button class="header-button" type="button" data-action="reset">
+            Reset <span class="key-hint" aria-hidden="true">Esc</span>
+          </button>
+        </nav>
+      </header>
+
+      <div class="app-body">
+        <aside class="step-rail" aria-label="Pause, Pray, Pivot progress">
+          <p class="rail-label">Guided reset</p>
+          <ol class="step-list">
+            <li class="step" data-step="pause">
+              <span class="step-number">01</span>
+              <span class="step-name">Pause</span>
+            </li>
+            <li class="step" data-step="pray">
+              <span class="step-number">02</span>
+              <span class="step-name">Pray</span>
+            </li>
+            <li class="step" data-step="pivot">
+              <span class="step-number">03</span>
+              <span class="step-name">Pivot</span>
+            </li>
+          </ol>
+          <p class="rail-note">No account. No record of your struggle. Your progress stays on this device.</p>
+        </aside>
+
+        <main id="main-content" tabindex="-1">
+          <div id="screen-root"></div>
+        </main>
+      </div>
+
+      <footer class="app-footer">
+        <p>Pause, Pray, Pivot</p>
+        <p class="footer-shortcut"><kbd>Esc</kbd> returns to the start</p>
+      </footer>
+    </div>
+
+    <div id="announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
+
