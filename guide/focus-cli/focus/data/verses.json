@@ -1,0 +1,153 @@
+[
+  {
+    "reference": "James 1:5",
+    "text": "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.",
+    "topics": ["wisdom"]
+  },
+  {
+    "reference": "Proverbs 3:5–6",
+    "text": "Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.",
+    "topics": ["wisdom", "anxiety"]
+  },
+  {
+    "reference": "Proverbs 16:9",
+    "text": "A man's heart deviseth his way: but the LORD directeth his steps.",
+    "topics": ["wisdom", "humility"]
+  },
+  {
+    "reference": "Proverbs 11:14",
+    "text": "Where no counsel is, the people fall: but in the multitude of counsellors there is safety.",
+    "topics": ["wisdom", "humility"]
+  },
+  {
+    "reference": "Galatians 6:9",
+    "text": "And let us not be weary in well doing: for in due season we shall reap, if we faint not.",
+    "topics": ["perseverance", "service"]
+  },
+  {
+    "reference": "James 1:12",
+    "text": "Blessed is the man that endureth temptation: for when he is tried, he shall receive the crown of life, which the Lord hath promised to them that love him.",
+    "topics": ["perseverance"]
+  },
+  {
+    "reference": "Romans 5:3–4",
+    "text": "And not only so, but we glory in tribulations also: knowing that tribulation worketh patience; And patience, experience; and experience, hope:",
+    "topics": ["perseverance"]
+  },
+  {
+    "reference": "1 Corinthians 15:58",
+    "text": "Therefore, my beloved brethren, be ye stedfast, unmoveable, always abounding in the work of the Lord, forasmuch as ye know that your labour is not in vain in the Lord.",
+    "topics": ["perseverance", "excellence", "service"]
+  },
+  {
+    "reference": "Philippians 4:6–7",
+    "text": "Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.",
+    "topics": ["anxiety", "rest"]
+  },
+  {
+    "reference": "1 Peter 5:7",
+    "text": "Casting all your care upon him; for he careth for you.",
+    "topics": ["anxiety", "rest"]
+  },
+  {
+    "reference": "Matthew 6:34",
+    "text": "Take therefore no thought for the morrow: for the morrow shall take thought for the things of itself. Sufficient unto the day is the evil thereof.",
+    "topics": ["anxiety"]
+  },
+  {
+    "reference": "Psalm 56:3",
+    "text": "What time I am afraid, I will trust in thee.",
+    "topics": ["anxiety"]
+  },
+  {
+    "reference": "Colossians 3:23–24",
+    "text": "And whatsoever ye do, do it heartily, as to the Lord, and not unto men; Knowing that of the Lord ye shall receive the reward of the inheritance: for ye serve the Lord Christ.",
+    "topics": ["excellence", "service"]
+  },
+  {
+    "reference": "Ecclesiastes 9:10",
+    "text": "Whatsoever thy hand findeth to do, do it with thy might; for there is no work, nor device, nor knowledge, nor wisdom, in the grave, whither thou goest.",
+    "topics": ["excellence"]
+  },
+  {
+    "reference": "Proverbs 22:29",
+    "text": "Seest thou a man diligent in his business? he shall stand before kings; he shall not stand before mean men.",
+    "topics": ["excellence"]
+  },
+  {
+    "reference": "1 Corinthians 10:31",
+    "text": "Whether therefore ye eat, or drink, or whatsoever ye do, do all to the glory of God.",
+    "topics": ["excellence", "service"]
+  },
+  {
+    "reference": "Micah 6:8",
+    "text": "He hath shewed thee, O man, what is good; and what doth the LORD require of thee, but to do justly, and to love mercy, and to walk humbly with thy God?",
+    "topics": ["humility", "service"]
+  },
+  {
+    "reference": "Philippians 2:3–4",
+    "text": "Let nothing be done through strife or vainglory; but in lowliness of mind let each esteem other better than themselves. Look not every man on his own things, but every man also on the things of others.",
+    "topics": ["humility", "service"]
+  },
+  {
+    "reference": "Proverbs 11:2",
+    "text": "When pride cometh, then cometh shame: but with the lowly is wisdom.",
+    "topics": ["humility", "wisdom"]
+  },
+  {
+    "reference": "James 4:10",
+    "text": "Humble yourselves in the sight of the Lord, and he shall lift you up.",
+    "topics": ["humility"]
+  },
+  {
+    "reference": "Matthew 11:28–30",
+    "text": "Come unto me, all ye that labour and are heavy laden, and I will give you rest. Take my yoke upon you, and learn of me; for I am meek and lowly in heart: and ye shall find rest unto your souls. For my yoke is easy, and my burden is light.",
+    "topics": ["rest", "anxiety"]
+  },
+  {
+    "reference": "Psalm 127:2",
+    "text": "It is vain for you to rise up early, to sit up late, to eat the bread of sorrows: for so he giveth his beloved sleep.",
+    "topics": ["rest", "anxiety"]
+  },
+  {
+    "reference": "Mark 6:31",
+    "text": "And he said unto them, Come ye yourselves apart into a desert place, and rest a while: for there were many coming and going, and they had no leisure so much as to eat.",
+    "topics": ["rest"]
+  },
+  {
+    "reference": "Exodus 33:14",
+    "text": "And he said, My presence shall go with thee, and I will give thee rest.",
+    "topics": ["rest"]
+  },
+  {
+    "reference": "Mark 10:45",
+    "text": "For even the Son of man came not to be ministered unto, but to minister, and to give his life a ransom for many.",
+    "topics": ["service", "humility"]
+  },
+  {
+    "reference": "Galatians 5:13",
+    "text": "For, brethren, ye have been called unto liberty; only use not liberty for an occasion to the flesh, but by love serve one another.",
+    "topics": ["service"]
+  },
+  {
+    "reference": "1 Peter 4:10",
+    "text": "As every man hath received the gift, even so minister the same one to another, as good stewards of the manifold grace of God.",
+    "topics": ["service", "humility"]
+  },
+  {
+    "reference": "Matthew 5:16",
+    "text": "Let your light so shine before men, that they may see your good works, and glorify your Father which is in heaven.",
+    "topics": ["service", "excellence"]
+  },
+  {
+    "reference": "Ephesians 2:8–10",
+    "text": "For by grace are ye saved through faith; and that not of yourselves: it is the gift of God: Not of works, lest any man should boast. For we are his workmanship, created in Christ Jesus unto good works, which God hath before ordained that we should walk in them.",
+    "topics": ["grace", "service", "humility"]
+  },
+  {
+    "reference": "Romans 8:1",
+    "text": "There is therefore now no condemnation to them which are in Christ Jesus, who walk not after the flesh, but after the Spirit.",
+    "topics": ["grace", "anxiety"]
+  }
+]
+

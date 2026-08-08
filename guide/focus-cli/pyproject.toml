@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "focus-cli"
+version = "1.0.0"
+description = "A terminal-only Christian focus and reflection companion for coders"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Focus CLI contributors"}]
+dependencies = []
+
+[project.scripts]
+focus = "focus.cli:main"
+
+[tool.setuptools.package-data]
+focus = ["data/*.json"]
+

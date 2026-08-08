@@ -1,0 +1,17 @@
+# Python-generated files
+__pycache__/
+*.py[cod]
+.coverage
+.pytest_cache/
+
+# Local environments and editor files
+.venv/
+venv/
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets (the application reads ESV_API_KEY from the environment)
+.env
+.env.*
+!.env.example

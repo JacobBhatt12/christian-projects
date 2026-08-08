@@ -1,0 +1,41 @@
+{
+  "translation": "World English Bible (Public Domain)",
+  "passages": [
+    {
+      "id": "james-1-22",
+      "reference": "James 1:22",
+      "text": "But be doers of the word, and not only hearers, deluding your own selves."
+    },
+    {
+      "id": "micah-6-8",
+      "reference": "Micah 6:8",
+      "text": "He has shown you, O man, what is good. What does Yahweh require of you, but to act justly, to love mercy, and to walk humbly with your God?"
+    },
+    {
+      "id": "john-15-12",
+      "reference": "John 15:12",
+      "text": "This is my commandment, that you love one another, even as I have loved you."
+    },
+    {
+      "id": "colossians-3-17",
+      "reference": "Colossians 3:17",
+      "text": "Whatever you do, in word or in deed, do all in the name of the Lord Jesus, giving thanks to God the Father, through him."
+    },
+    {
+      "id": "galatians-5-13",
+      "reference": "Galatians 5:13",
+      "text": "For you, brothers, were called for freedom. Only don’t use your freedom for gain to the flesh, but through love be servants to one another."
+    },
+    {
+      "id": "philippians-2-3-4",
+      "reference": "Philippians 2:3–4",
+      "text": "Do nothing through rivalry or through conceit, but in humility, each counting others better than himself; each of you not just looking to his own things, but each of you also to the things of others."
+    },
+    {
+      "id": "ephesians-2-10",
+      "reference": "Ephesians 2:10",
+      "text": "For we are his workmanship, created in Christ Jesus for good works, which God prepared before that we would walk in them."
+    }
+  ]
+}
+

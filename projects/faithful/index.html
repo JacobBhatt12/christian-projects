@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Faithful is a private, local daily discipleship planner.">
+    <title>Faithful | Daily discipleship planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <button type="button" data-view-button="today" aria-current="page">Today</button>
+        <button type="button" data-view-button="prayer">Prayer list</button>
+        <button type="button" data-view-button="history">Seven days</button>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <!-- Daily Scripture and practice -->
+      <section id="today" class="app-view" data-view="today" aria-labelledby="today-title">
+        <header class="opening">
+          <div class="opening-meta">
+            <p class="eyebrow" id="today-date">Today</p>
+            <p class="eyebrow">Daily discipleship</p>
+          </div>
+          <h1 id="today-title">Do not merely listen.<br>Put it into practice.</h1>
+          <p class="opening-note">Read slowly. Choose one honest response. Begin again with grace.</p>
+        </header>
+
+        <form id="daily-form" class="daily-layout">
+          <aside class="daily-index" aria-label="Daily order">
+            <div>
+              <p class="eyebrow">Daily order</p>
+              <ol>
+                <li><a href="#daily-scripture"><span>01</span> Read</a></li>
+                <li><a href="#daily-notice"><span>02</span> Notice</a></li>
+                <li><a href="#daily-respond"><span>03</span> Respond</a></li>
+                <li><a href="#daily-evening"><span>04</span> Reflect</a></li>
+              </ol>
+            </div>
+            <p class="index-note">There is no perfect entry. Make room for one faithful next step.</p>
+          </aside>
+
+          <div class="daily-content">
+            <section id="daily-scripture" class="section-block scripture-block" aria-labelledby="scripture-title">
+              <div class="section-heading">
+                <p class="section-number" aria-hidden="true">01</p>
+                <div>
+                  <p class="eyebrow">Daily Scripture</p>
+                  <h2 id="scripture-title">Today’s passage</h2>
+                </div>
+              </div>
+              <div id="passage-loading" class="loading-lines" aria-live="polite">
+                <span></span><span></span><span></span>
+                <span class="visually-hidden">Loading today’s passage</span>
+              </div>
+              <figure id="passage-content" hidden>
+                <blockquote id="passage-text"></blockquote>
+                <figcaption>
+                  <cite id="passage-reference"></cite>
+                  <span id="passage-translation"></span>
+                </figcaption>
+              </figure>
+              <p id="passage-error" class="message" role="alert" hidden></p>
+            </section>
+
+            <section id="daily-notice" class="section-block" aria-labelledby="notice-title">
+              <div class="section-heading compact">
+                <p class="section-number" aria-hidden="true">02</p>
+                <div>
+                  <p class="eyebrow">Notice</p>
+                  <h2 id="notice-title">What does this teach me?</h2>
+                </div>
+              </div>
+              <label class="visually-hidden" for="teaching">What does this passage teach you?</label>
+              <textarea id="teaching" name="teaching" rows="7" placeholder="Write a word, truth, question, or correction you want to carry with you."></textarea>
+            </section>
+
+            <section id="daily-respond" class="section-block" aria-labelledby="obedience-title">
+              <div class="section-heading compact">
+                <p class="section-number" aria-hidden="true">03</p>
+                <div>
+                  <p class="eyebrow">Respond</p>
+                  <h2 id="obedience-title">What will obedience look like today?</h2>
+                </div>
+              </div>
+
+              <fieldset class="area-choices">
+                <legend>Choose one daily area</legend>
+                <label>
+                  <input type="radio" name="area" value="Love God">
+                  <span><strong>Love God</strong><small>Attention, trust, worship</small></span>
+                </label>
+                <label>
+                  <input type="radio" name="area" value="Love People">
+                  <span><strong>Love People</strong><small>Presence, mercy, forgiveness</small></span>
+                </label>
+                <label>
+                  <input type="radio" name="area" value="Serve Faithfully">
+                  <span><strong>Serve Faithfully</strong><small>Work, stewardship, courage</small></span>
+                </label>
+              </fieldset>
+
+              <label class="field-label" for="commitment">My practical commitment</label>
+              <input id="commitment" name="commitment" type="text" maxlength="240" placeholder="Today, I will…">
+              <p class="field-help">Keep it small enough to practice today. Faithfulness is not measured by size.</p>
+            </section>
+
+            <section id="daily-evening" class="section-block evening" aria-labelledby="evening-title">
+              <div class="section-heading compact">
+                <p class="section-number" aria-hidden="true">04</p>
+                <div>
+                  <p class="eyebrow">Evening</p>
+                  <h2 id="evening-title">Reflect with grace</h2>
+                </div>
+              </div>
+
+              <label class="field-label" for="noticed-god">Where did I notice God?</label>
+              <textarea id="noticed-god" name="noticedGod" rows="3"></textarea>
+
+              <label class="field-label" for="fell-short">Where did I fall short?</label>
+              <textarea id="fell-short" name="fellShort" rows="3"></textarea>
+
+              <label class="field-label" for="needed-grace">What grace do I need tomorrow?</label>
+              <textarea id="needed-grace" name="neededGrace" rows="3"></textarea>
+            </section>
+
+            <div class="day-actions">
+              <p id="save-status" role="status">Changes save on this device.</p>
+              <button id="complete-day" class="button primary" type="button">Mark today complete</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Private prayer list -->
+      <section id="prayer" class="app-view inner-view" data-view="prayer" aria-labelledby="prayer-title" hidden>
+        <header class="page-heading">
+          <p class="eyebrow">Private prayer list</p>
+          <h1 id="prayer-title">Bring each need honestly.</h1>
+          <p>Prayer notes stay in this browser. Mark an item answered when you want to remember God’s care.</p>
+        </header>
+
+        <div class="prayer-layout">
+          <form id="prayer-form" class="prayer-entry">
+            <label class="field-label" for="prayer-text">Prayer request</label>
+            <textarea id="prayer-text" name="prayerText" rows="5" required maxlength="500" placeholder="Write a name, need, or simple prayer."></textarea>
+            <button class="button primary" type="submit">Add to prayer list</button>
+          </form>
+
+          <section aria-labelledby="prayer-list-title">
+            <div class="list-heading">
+              <h2 id="prayer-list-title">Your prayers</h2>
+              <p id="prayer-count">0 open</p>
+            </div>
+            <div id="prayer-list" class="prayer-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <!-- Seven-day reflection history -->
+      <section id="history" class="app-view inner-view" data-view="history" aria-labelledby="history-title" hidden>
+        <header class="page-heading history-heading">
+          <div>
+            <p class="eyebrow">The past seven days</p>
+            <h1 id="history-title">A quiet record.</h1>
+            <p>No streaks and no scores. Just a place to remember what you noticed and practiced.</p>
+          </div>
+          <button id="export-reflections" class="button" type="button">Export reflections (.txt)</button>
+        </header>
+
+        <div class="history-table-wrap">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Passage</th>
+                <th scope="col">Daily area</th>
+                <th scope="col">Status</th>
+                <th scope="col"><span class="visually-hidden">Open entry</span></th>
+              </tr>
+            </thead>
+            <tbody id="history-rows"></tbody>
+          </table>
+        </div>
+
+        <article id="history-detail" class="history-detail" aria-live="polite">
+          <p class="empty-copy">Choose a day to read its entry.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <p class="footer-mark">Faithful.</p>
+        <p>Scripture into practice, one day at a time.</p>
+      </div>
+      <div class="footer-privacy">
+        <p class="eyebrow">Private by design</p>
+        <p>Your entries stay in this browser. Nothing is sent anywhere else.</p>
+      </div>
+      <ul class="footer-facts" aria-label="Privacy summary">
+        <li>No account</li>
+        <li>No tracking</li>
+        <li>No upload</li>
+      </ul>
+    </footer>
+
+    <div id="app-status" class="visually-hidden" aria-live="polite"></div>
+  </body>
+</html>
