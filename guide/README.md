@@ -16,6 +16,14 @@ and calling.
 - [Staying Encouraged](staying-encouraged.md) — on rejection, comparison,
   and working "as unto the Lord" when the job search is discouraging.
 
+This folder also has small terminal tools, not just writing:
+
+- [`roadmap-cli`](roadmap-cli) — a curated map of learning resources for
+  each stage of the journey (beginner, intermediate, professional). Run
+  `roadmap` to browse it.
+- [`focus-cli`](focus-cli) — a terminal companion for purposeful coding
+  sessions, prayer, and reflection. Run `focus` to use it.
+
 > “Whatever you do, work heartily, as for the Lord and not for men.”
 > — Colossians 3:23 (ESV)
 
