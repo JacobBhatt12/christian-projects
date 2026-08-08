@@ -1,6 +1,6 @@
-# Jacob's Christian Projects
+Christian Projects
 
-Hi, I'm Jacob. I enjoy building Christian-focused apps and creative coding
+Hi, I'm Jacob. I am a student at the University of South Florida. I enjoy building Christian-focused apps and creative coding
 projects that help share Scripture, encourage faith, and make biblical content
 easy to explore.
 
