@@ -332,58 +332,6 @@ button {
   }
 }
 
-/* ---------- easter egg reveal ---------- */
-
-.kp-egg-item {
-  opacity: 0;
-  animation: kp-egg-in 900ms ease forwards;
-}
-
-@keyframes kp-egg-in {
-  from {
-    opacity: 0;
-    transform: scale(0.92) translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.kp-egg-pulse {
-  animation: kp-pulse-glow 2.4s ease-in-out infinite;
-}
-
-.kp-egg-item.kp-egg-pulse {
-  animation:
-    kp-egg-in 900ms ease forwards,
-    kp-pulse-glow 2.4s ease-in-out infinite;
-}
-
-@keyframes kp-pulse-glow {
-  0%,
-  100% {
-    text-shadow: 0 0 6px var(--kp-glow-gold);
-  }
-  50% {
-    text-shadow:
-      0 0 22px var(--kp-glow-gold),
-      0 0 44px var(--kp-glow-gold);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .kp-egg-item {
-    animation: none;
-    opacity: 1;
-  }
-
-  .kp-egg-pulse,
-  .kp-egg-item.kp-egg-pulse {
-    animation: none;
-  }
-}
-
 /* ---------- scrollbar ---------- */
 
 .kp-scroll::-webkit-scrollbar {

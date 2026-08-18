@@ -144,6 +144,18 @@ function aboutOutput(): OutputNode[] {
   ];
 }
 
+function easterEggOutput(): OutputNode[] {
+  return [
+    text("UNLOCKING HIDDEN SEQUENCE...", "gold"),
+    blank(),
+    text("You found a door not listed in the manual.", "bright"),
+    blank(),
+    { kind: "link", text: "Join the Coders for Christ Discord ->", url: "https://discord.gg/N9CpVZN2kr" },
+    blank(),
+    text('"And let us consider one another to provoke unto love and good works... exhorting one another." — Hebrews 10:24-25', "dim"),
+  ];
+}
+
 function unknownOutput(raw: string): OutputNode[] {
   return [
     text(`COMMAND NOT RECOGNIZED: "${raw}"`, "gold"),
@@ -197,7 +209,6 @@ function journalCommand(rest: string, ctx: CommandContext): OutputNode[] {
 
   return [text(`Unknown journal command: "${sub}". Try: journal write / list / clear`, "dim")];
 }
-
 function lightModeOutput(ctx: CommandContext): OutputNode[] {
   const goingLight = ctx.theme !== "light";
   ctx.setTheme(goingLight ? "light" : "dark");
@@ -247,9 +258,7 @@ export function processCommand(rawInput: string, ctx: CommandContext): CommandRe
     case "reboot":
       return { output: [], reboot: true };
     case "easteregg":
-      return {
-        output: [text("UNLOCKING HIDDEN SEQUENCE...", "gold"), { kind: "component", id: "easteregg" }],
-      };
+      return { output: easterEggOutput() };
     case "lettherebelight":
       return { output: lightModeOutput(ctx) };
     case "mute":

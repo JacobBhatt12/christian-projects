@@ -1,5 +1,4 @@
 import type { OutputNode } from "../types";
-import { EasterEggBurst } from "./EasterEggBurst";
 
 const toneStyle: Record<NonNullable<Extract<OutputNode, { kind: "text" }>["tone"]>, React.CSSProperties> = {
   normal: { color: "var(--kp-fg)" },
@@ -46,9 +45,18 @@ export function TerminalOutputLine({ node }: TerminalOutputLineProps) {
           {node.text}
         </div>
       );
-    case "component":
-      if (node.id === "easteregg") return <EasterEggBurst />;
-      return null;
+    case "link":
+      return (
+        <a
+          href={node.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="kp-glow-gold underline underline-offset-2"
+          style={{ color: "var(--kp-gold)" }}
+        >
+          {node.text}
+        </a>
+      );
     default:
       return null;
   }

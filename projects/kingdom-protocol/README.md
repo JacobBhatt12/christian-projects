@@ -16,7 +16,7 @@ Nothing here performs real hacking, scanning, or intrusion of any kind. Every "s
 - `clear` — clear the terminal
 - `reboot` — replay the boot sequence
 - `about` — what this project is and isn't
-- `easteregg` — unlock a hidden visual sequence
+- `easteregg` — unlock a hidden message with a link to the Coders for Christ Discord
 
 There's also a hidden command, not listed in `help`, that dramatically transforms the whole theme while revealing Genesis 1:3.
 

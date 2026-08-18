@@ -37,7 +37,7 @@ export type OutputNode =
   | { kind: "verse"; verse: Verse }
   | { kind: "ascii"; art: string; tone?: "normal" | "gold" }
   | { kind: "glitch"; text: string }
-  | { kind: "component"; id: string }
+  | { kind: "link"; text: string; url: string }
   | { kind: "blank" };
 
 export interface HistoryEntry {
