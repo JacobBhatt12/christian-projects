@@ -83,22 +83,9 @@ export function Terminal({
   return (
     <div className="relative flex h-full w-full flex-col">
       <header
-        className="flex shrink-0 items-center justify-between border-b px-4 py-2.5 sm:px-6"
+        className="flex shrink-0 items-center justify-end border-b px-4 py-2.5 sm:px-6"
         style={{ borderColor: "var(--kp-border)" }}
       >
-        <div className="flex items-center gap-2.5">
-          <span
-            className="h-2 w-2 rounded-full"
-            style={{ background: "var(--kp-fg)", boxShadow: "0 0 8px var(--kp-glow)" }}
-            aria-hidden="true"
-          />
-          <span className="kp-glow text-xs tracking-[0.2em] sm:text-sm" style={{ color: "var(--kp-fg)" }}>
-            KINGDOM PROTOCOL
-          </span>
-          <span className="hidden text-[10px] tracking-widest sm:inline" style={{ color: "var(--kp-fg-dim)" }}>
-            // SECURE CHANNEL ACTIVE
-          </span>
-        </div>
         <MuteToggle muted={muted} onToggle={() => setMuted(!muted)} />
       </header>
 

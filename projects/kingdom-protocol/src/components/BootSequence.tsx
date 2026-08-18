@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { BOOT_SEQUENCE, BOOT_VERSE, BOOT_WELCOME, type BootLine } from "../data/bootSequence";
-import { ASCII_CROSS, ASCII_KINGDOM_BANNER } from "../data/asciiArt";
+import { ASCII_KINGDOM_BANNER } from "../data/asciiArt";
 import { scrambleFrame } from "../lib/scramble";
 import { playEnterBeep, playAccessChime } from "../lib/sound";
 import { Cursor } from "./Cursor";
@@ -164,18 +164,6 @@ export function BootSequence({ onComplete, reducedMotion, muted }: BootSequenceP
           </div>
         )}
       </div>
-
-      {(stage === "cross" || stage === "verse" || stage === "welcome") && (
-        <div className="kp-fade-in mx-auto w-full max-w-lg overflow-x-auto px-2">
-          <pre
-            className="kp-glow mx-auto w-max text-[6px] leading-none sm:text-[9px]"
-            style={{ color: "var(--kp-fg)" }}
-            aria-hidden="true"
-          >
-            {ASCII_CROSS}
-          </pre>
-        </div>
-      )}
 
       {(stage === "verse" || stage === "welcome") && (
         <div className="kp-fade-in mx-auto max-w-md text-center text-xs italic sm:text-sm" style={{ color: "var(--kp-fg-bright)" }}>
