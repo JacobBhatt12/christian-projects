@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fafafa" />
+    <meta
+      name="description"
+      content="GoodWorks local nonprofit impact workspace. Track activities and create accurate impact reports."
+    />
+    <script>
+      (() => {
+        let preference = "system";
+        try {
+          preference = localStorage.getItem("goodworks.theme.v1") || "system";
+        } catch {}
+        const dark =
+          preference === "dark" ||
+          (preference !== "light" &&
+            matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.dataset.theme = dark ? "dark" : "light";
+        document.querySelector('meta[name="theme-color"]').content = dark
+          ? "#18181b"
+          : "#fafafa";
+      })();
+    </script>
+    <title>GoodWorks · Impact workspace</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
